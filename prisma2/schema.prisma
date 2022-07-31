@@ -1,25 +1,13 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
-generator client {
-  provider = "prisma-client-js"
-}
-
 datasource db {
   provider = "sqlite"
   url      = env("DATABASE_URL")
 }
 
-model UserAnswers {
-  id         Int @id @default(autoincrement())
-  createdAt  DateTime @default(now())
-  userEmail  String
-  fullName   String
-  dob        DateTime
-  happy      Int
-  energetic  Int
-  hopefull   Int
-  sleptHours Int
+generator client {
+  provider = "prisma-client-js"
 }
 
 model Post {
@@ -27,6 +15,8 @@ model Post {
   title String
   text  String
 
+  // To return `Date`s intact through the API we need to add data transformers
+  // https://trpc.io/docs/data-transformers
   createdAt DateTime @default(now())
   updatedAt DateTime @default(now()) @updatedAt
 }

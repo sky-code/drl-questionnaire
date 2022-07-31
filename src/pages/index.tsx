@@ -1,8 +1,11 @@
-import { trpc } from '../utils/trpc';
+import { trpc } from '~/utils/trpc';
 import { NextPageWithLayout } from './_app';
 import Link from 'next/link';
+import Header from '~/components/header';
+import { useUserContext } from '~/utils/user';
 
 const IndexPage: NextPageWithLayout = () => {
+  const [user] = useUserContext();
   const utils = trpc.useContext();
   const postsQuery = trpc.useQuery(['post.all']);
   const addPost = trpc.useMutation('post.add', {
@@ -21,12 +24,13 @@ const IndexPage: NextPageWithLayout = () => {
 
   return (
     <>
-      <h1>Welcome to your tRPC starter!</h1>
+      <h1>Welcome {user} to your tRPC starter!</h1>
       <p>
         Check <a href="https://trpc.io/docs">the docs</a> whenever you get
         stuck, or ping <a href="https://twitter.com/alexdotjs">@alexdotjs</a> on
         Twitter.
       </p>
+      <Header></Header>
 
       <h2>
         Posts
