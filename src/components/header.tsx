@@ -10,7 +10,7 @@ const Header = () => {
   const [email, setEmail] = useState('');
 
   function loginSubmit(event: FormEvent) {
-    event?.preventDefault();
+    event.preventDefault();
     setUser(email);
     handleClose();
   }
@@ -102,11 +102,6 @@ const Header = () => {
         <li>
           <a href="/" className="nav-link px-2 link-secondary">
             Home
-          </a>
-        </li>
-        <li>
-          <a href="/summary" className="nav-link px-2 link-dark">
-            Summary
           </a>
         </li>
       </ul>
